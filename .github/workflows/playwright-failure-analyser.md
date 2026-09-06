@@ -5,6 +5,7 @@ on:
     types: [completed]
     branches:
       - main
+    conclusion: failure
 
 permissions:
   contents: read
@@ -40,6 +41,34 @@ safe-outputs:
 ---
 
 # Playwright Failure Analyzer
+
+## Triggering Playwright Run
+
+## Triggering Playwright Run
+
+The Playwright workflow run that triggered this workflow is:
+
+**Run ID:** ${{ github.event.workflow_run.id }}
+
+**Run Number:** ${{ github.event.workflow_run.run_number }}
+
+**Run URL:** ${{ github.event.workflow_run.html_url }}
+
+**Workflow:** Playwright Tests
+
+**Conclusion:** ${{ github.event.workflow_run.conclusion }}
+
+**Commit:** ${{ github.event.workflow_run.head_sha }}
+
+IMPORTANT:
+
+You MUST investigate the Playwright workflow run identified above.
+
+Do NOT investigate this Agentic Workflow's own run.
+
+The Agentic Workflow run ID (`${{ github.run_id }}`) is NOT the Playwright run ID.
+
+Use the triggering Playwright Run ID when inspecting GitHub Actions.
 
 You are a senior Playwright and TypeScript test automation engineer.
 
