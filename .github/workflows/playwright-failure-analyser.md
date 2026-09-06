@@ -4,6 +4,8 @@ on:
     workflows: ["Playwright Tests"]
     types: [completed]
 
+    branches:
+      - main
 permissions:
   contents: read
   actions: read
@@ -12,7 +14,7 @@ permissions:
 
 engine:
   id: copilot
-  model: copilot/gpt-5-mini
+  model: gpt-5-mini
 
 tools:
   github:
