@@ -22,6 +22,7 @@ tools:
       - repos
       - issues
       - pull_requests
+      - actions
 
 safe-outputs:
   create-issue:
