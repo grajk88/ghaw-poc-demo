@@ -37,7 +37,7 @@ safe-outputs:
     retention-days: 30
     skip-archive: true
     allowed-paths:
-      - "/tmp/playwright-failure-report.html"
+      - "/tmp/gh-aw/playwright-failure-report.html"
 ---
 
 # Playwright Failure Analyzer
@@ -248,7 +248,7 @@ For every failed Playwright workflow run, generate a detailed self-contained HTM
 Create the file at EXACTLY:
 
 ```text
-/tmp/playwright-failure-report.html
+/tmp/gh-aw/playwright-failure-report.html
 ```
 
 Do not create the report somewhere else.
@@ -395,7 +395,7 @@ Do not include:
 After creating:
 
 ```text
-/tmp/playwright-failure-report.html
+/tmp/gh-aw/playwright-failure-report.html
 ```
 
 you MUST call the `upload_artifact` safe-output.
@@ -411,7 +411,7 @@ playwright-failure-report
 **Path:**
 
 ```text
-/tmp/playwright-failure-report.html
+/tmp/gh-aw/playwright-failure-report.html
 ```
 
 Do not use:
