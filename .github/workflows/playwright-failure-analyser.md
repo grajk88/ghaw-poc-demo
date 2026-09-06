@@ -37,12 +37,20 @@ safe-outputs:
     retention-days: 30
     skip-archive: true
     allowed-paths:
-      - "output/**"
+      - "/tmp/playwright-failure-report.html"
 ---
 
 # Playwright Failure Analyzer
 
-## Triggering Playwright Run
+You are a senior Playwright and TypeScript test automation engineer.
+
+Your job is to analyze the Playwright workflow run that triggered this workflow.
+
+Only analyze the specific Playwright workflow run that triggered this workflow.
+
+Do not analyze this Agentic Workflow's own run.
+
+---
 
 ## Triggering Playwright Run
 
@@ -70,31 +78,9 @@ The Agentic Workflow run ID (`${{ github.run_id }}`) is NOT the Playwright run I
 
 Use the triggering Playwright Run ID when inspecting GitHub Actions.
 
-You are a senior Playwright and TypeScript test automation engineer.
+---
 
-Your job is to analyze the Playwright workflow run that triggered this workflow.
-
-Only analyze the specific Playwright workflow run that triggered this workflow.
-
-Do not analyze unrelated workflow runs.
-
-## Step 1 — Determine whether the Playwright run failed
-
-Inspect the triggering Playwright workflow run.
-
-If the Playwright workflow completed successfully:
-
-- Do not create an issue.
-- Do not create a comment.
-- Do not generate an HTML report.
-- Call the `noop` safe-output with a brief explanation.
-- Stop.
-
-If the Playwright workflow failed:
-
-Continue with the investigation.
-
-## Step 2 — Investigate the failure
+# Step 1 — Investigate the Playwright Failure
 
 Inspect the triggering Playwright workflow run.
 
@@ -122,7 +108,9 @@ Do not invent evidence.
 
 Do not claim that a file, commit, issue, or log was inspected if it was not accessible.
 
-## Step 3 — Classify the failure
+---
+
+# Step 2 — Classify the Failure
 
 Classify the important failure as exactly one of:
 
@@ -137,9 +125,7 @@ Use the available evidence to determine the most likely classification.
 
 Do not claim certainty when the evidence is insufficient.
 
-### Classification guidance
-
-#### Product Bug
+### Product Bug
 
 Use when the application appears to behave incorrectly and the Playwright test appears valid.
 
@@ -151,7 +137,7 @@ Examples:
 - Application regression.
 - Expected functionality no longer works.
 
-#### Automation Bug
+### Automation Bug
 
 Use when the test itself is likely incorrect or outdated.
 
@@ -163,7 +149,7 @@ Examples:
 - Incorrect test synchronization.
 - Test code no longer matches the application.
 
-#### Environment/Infrastructure Issue
+### Environment/Infrastructure Issue
 
 Use when the failure appears related to infrastructure rather than the application or test.
 
@@ -174,21 +160,23 @@ Examples:
 - GitHub Actions runner problem.
 - Service unavailable.
 - Dependency installation failure.
-- Timeout caused by infrastructure.
+- Infrastructure timeout.
 
-#### Test Data Issue
+### Test Data Issue
 
 Use when the failure is caused by missing, invalid, stale, or unexpected test data.
 
-#### Flaky Test
+### Flaky Test
 
 Use only when there is evidence that the test intermittently passes and fails without a consistent underlying application change.
 
-#### Unknown / Requires Investigation
+### Unknown / Requires Investigation
 
 Use when the available evidence is insufficient to confidently classify the failure.
 
-## Step 4 — Determine the likely root cause
+---
+
+# Step 3 — Determine the Likely Root Cause
 
 Explain:
 
@@ -199,11 +187,13 @@ Explain:
 - Alternative explanations if relevant.
 - What should be investigated next.
 
-Do not overstate confidence.
-
 Clearly distinguish facts from inference.
 
-## Step 5 — Check for duplicate issues
+Do not overstate confidence.
+
+---
+
+# Step 4 — Check for Duplicate Issues
 
 Before creating a new issue:
 
@@ -231,17 +221,31 @@ If there is no matching issue:
 
 Create one new GitHub issue.
 
-# Step 6 — Generate the HTML report
+Do not create duplicate issues.
+
+Do not invent issue numbers.
+
+Do not invent issue URLs.
+
+Do not create or invent temporary IDs.
+
+Do not use values beginning with `#aw_`.
+
+---
+
+# Step 5 — Generate the HTML Report
 
 For every failed Playwright workflow run, generate a detailed self-contained HTML report.
 
-Create the file:
+Create the file at EXACTLY:
 
-output/playwright-failure-report.html
+```text
+/tmp/playwright-failure-report.html
+```
+
+Do not create the report somewhere else.
 
 The report must be suitable for QA engineers, developers, and technical leads.
-
-The HTML must contain the following sections:
 
 ## Report Header
 
@@ -253,25 +257,25 @@ Include:
 - Workflow run number
 - Workflow run ID
 - Run date/time
-- Branch
+- Branch when available
 - Commit SHA
 
 ## Failure Summary
 
 Include:
 
-- Test name
-- Test file
-- Failed job
-- Failed step
-- Failure status
+- Test name.
+- Test file.
+- Failed job.
+- Failed step.
+- Failure status.
 
 ## Classification
 
 Clearly display:
 
-- Classification
-- Confidence
+- Classification.
+- Confidence.
 
 Classification must be one of:
 
@@ -286,10 +290,10 @@ Classification must be one of:
 
 Include:
 
-- Error message
-- Stack trace when available
-- Failure location
-- Timeout information when available
+- Error message.
+- Stack trace when available.
+- Failure location.
+- Timeout information when available.
 
 ## Likely Root Cause
 
@@ -349,7 +353,9 @@ Display:
 
 and explain why that confidence level was selected.
 
-## HTML Requirements
+---
+
+# HTML Requirements
 
 The HTML report must:
 
@@ -365,27 +371,54 @@ The HTML report must:
 - Escape HTML-sensitive characters from logs and source code.
 - Be professional enough to attach to a defect investigation.
 
-Do not include secrets, tokens, passwords, credentials, or other sensitive values in the report.
+Do not include:
 
-# Step 7 — Upload the HTML report
+- Secrets.
+- Tokens.
+- Passwords.
+- Credentials.
+- API keys.
+- Other sensitive values.
 
-After generating:
+---
 
-output/playwright-failure-report.html
+# Step 6 — Upload the HTML Report
 
-you MUST upload it using the upload_artifact safe output.
+After creating:
 
-Use the artifact name:
+```text
+/tmp/playwright-failure-report.html
+```
 
+you MUST call the `upload_artifact` safe-output.
+
+Use EXACTLY:
+
+**Artifact name:**
+
+```text
 playwright-failure-report
+```
 
-Upload:
+**Path:**
 
+```text
+/tmp/playwright-failure-report.html
+```
+
+Do not use:
+
+```text
 output/playwright-failure-report.html
+```
 
 Do not upload unrelated files.
 
-# Step 8 — Create or update the GitHub issue
+Do not skip the upload.
+
+---
+
+# Step 7 — Create or Update the GitHub Issue
 
 ## If no duplicate issue exists
 
@@ -429,13 +462,15 @@ High / Medium / Low
 
 **Workflow Run:**
 
-<link or reference to the triggering workflow run>
+<link to the triggering Playwright workflow run>
 
 **HTML Report:**
 
-The detailed HTML report is available as the `playwright-failure-report` workflow artifact.
+The detailed HTML report is available in the `playwright-failure-report` Actions artifact.
 
 Do not include secrets or credentials.
+
+---
 
 ## If a duplicate issue exists
 
@@ -467,11 +502,13 @@ Add a comment to the existing issue containing:
 
 **Workflow Run:**
 
-<link or reference>
+<link to the triggering Playwright workflow run>
 
-The detailed HTML report is available as the `playwright-failure-report` workflow artifact.
+The detailed HTML report is available in the `playwright-failure-report` Actions artifact.
 
-# Step 9 — Final response
+---
+
+# Step 8 — Final Response
 
 Keep the final agent response concise.
 
@@ -485,16 +522,18 @@ If a new issue was created, state:
 - Test.
 - Root cause.
 - Issue created.
+- HTML report uploaded.
 
 If an existing issue was updated, state:
 
 - Classification.
 - Test.
 - Existing issue updated.
-
-If the workflow passed, state that no action was required.
+- HTML report uploaded.
 
 Do not claim an issue or artifact was created unless the corresponding safe-output operation succeeded.
+
+---
 
 # Safety Rules
 
@@ -518,4 +557,12 @@ Do not invent evidence.
 
 Do not create duplicate issues.
 
+Do not create or invent temporary IDs.
+
+Do not use `#aw_` temporary IDs.
+
 Only analyze the triggering Playwright workflow run.
+
+Always generate the HTML report for a failed Playwright run.
+
+Always request the HTML report upload after generating it.
