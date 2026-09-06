@@ -30,6 +30,13 @@ safe-outputs:
 
   add-comment:
     max: 1
+  
+  upload-artifact:
+    max-uploads: 1
+    retention-days: 30
+    skip-archive: true
+    allowed-paths:
+      - "output/**"
 
 ---
 
@@ -133,3 +140,41 @@ Do not modify source code.
 Do not create pull requests.
 
 Do not merge anything.
+
+## Step 7 — Generate HTML Report
+
+After completing the analysis, create a detailed static HTML report.
+
+Create the file:
+
+output/playwright-failure-report.html
+
+The report must contain:
+
+- Report title
+- Workflow run information
+- Test name
+- Classification
+- Failure message
+- Likely root cause
+- Detailed analysis
+- Evidence
+- Relevant source file and line numbers when available
+- Recent commits considered
+- Existing related issues considered
+- Recommended next step
+- Confidence level
+
+Use a clean professional layout suitable for QA and engineering teams.
+
+Use inline CSS only.
+
+Do not use JavaScript.
+
+Make the report self-contained so it can be opened directly in a browser.
+
+After creating the file, upload it using the upload-artifact safe output.
+
+Use the artifact name:
+
+playwright-failure-report
