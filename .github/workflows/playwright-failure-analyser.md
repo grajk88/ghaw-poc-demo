@@ -12,6 +12,7 @@ permissions:
 
 engine:
   id: copilot
+  model: copilot/gpt-5-mini
 
 tools:
   github:
