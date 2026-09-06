@@ -227,9 +227,17 @@ Do not invent issue numbers.
 
 Do not invent issue URLs.
 
-Do not create or invent temporary IDs.
+When a safe-output operation requires a temporary_id, use a short valid gh-aw temporary ID in the format:
 
-Do not use values beginning with `#aw_`.
+aw_<3-8 alphanumeric characters>
+
+For example:
+
+aw_report
+
+Do not use long descriptive temporary IDs.
+
+Do not invent temporary IDs for purposes other than safe-output operations.
 
 ---
 
@@ -557,9 +565,13 @@ Do not invent evidence.
 
 Do not create duplicate issues.
 
-Do not create or invent temporary IDs.
+For safe-output operations, use only valid gh-aw temporary IDs when required.
 
-Do not use `#aw_` temporary IDs.
+A valid temporary ID uses the format:
+
+aw_<3-8 alphanumeric characters>
+
+Do not use long descriptive temporary IDs.
 
 Only analyze the triggering Playwright workflow run.
 
